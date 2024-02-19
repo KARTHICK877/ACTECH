@@ -1,0 +1,104 @@
+/* Home.css */
+body{
+    background-color: red;
+}
+.dashboard {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: #3b5998;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .sidebar h2 {
+    margin-bottom: 20px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    padding: 10px 0;
+    cursor: pointer;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .content h2 {
+    margin-bottom: 20px;
+  }
+  
+  .boxes {
+   display: flex;
+   justify-content: space-around;
+   font-weight: bold;
+   font-size: larger;
+   
+   /* position: relative; */
+  }
+  
+  .box {
+    background-color: #f0f0f0;
+    /* padding: 120px; */
+    width: 15rem;
+    height: 11rem;
+    margin: 20px;
+    border-radius: 10%;
+  }
+  
+  .graph {
+    margin-top: 20px;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+
+
+  .span{
+    position: relative;
+    left: 20px;
+    top: 50px;
+    margin: 20px;
+  }
+
+  .logout{
+margin: -1px; 
+padding: -1px;
+
+font-weight: bold;
+
+}
+.count{
+  /* font-size: small; 
+  
+  */
+  
+
+  margin: 9px;
+  /* padding: 9p; */
+  font-weight: lighter;
+  font-family: 'Courier New', Courier, monospace;
+}
+.graph{
+  display: flex;
+  justify-content: space-around;
+}
+.pro{
+  display: flex;
+  position: relative;
+  left: 30%;
+  top: 15%;
+}.pro1{
+  display: flex;
+  position: relative;
+  left: 30%;
+  top: 9%;
+}

@@ -1,0 +1,55 @@
+.bg-login {
+    background-color: #f0f0f0;
+    height: 100vh;
+}
+
+.dashboard {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.content h2 {
+    color: #fff;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    cursor: pointer;
+    padding: 10px 0;
+}
+
+li:hover {
+    background-color: #555;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-weight:bold ;
+}
+
+th {
+    background-color: #555;
+    color: #fff;
+}
