@@ -3,7 +3,7 @@ import axios from 'axios';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import SettingsInputHdmiIcon from '@mui/icons-material/SettingsInputHdmi';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { useNavigate } from 'react-router-dom';
 
 import './Connection.css';
 
@@ -38,13 +38,6 @@ function Connection() {
         }
     };
 
-    // const handleEditUser = (id) => {
-    //     // Find the selected user from the users array
-    //     const selectedUser = users.find(user => user._id === id);
-    //     // Navigate to the CreateConnection component with the selected user's data as props
-    //     navigate('/CreateConnection', { state: { user: selectedUser } });
-    // };
-
     return (
         <div className='bg-login'>
             <div className="dashboard">
@@ -54,10 +47,10 @@ function Connection() {
                         <li onClick={() => handleNavigation('/home')}>Home</li>
                         <li onClick={() => handleNavigation('/connection')}>Connection  <SettingsInputHdmiIcon /></li>
                         <li onClick={() => handleNavigation('/CreateConnection')}>Create Connection</li>
-                        <li onClick={() => handleNavigation('/underwork')}>Configuration <i class="fa-solid fa-database"></i></li>
-            <li onClick={() => handleNavigation('/underwork')}>Pipeline <QueryStatsIcon /></li>
-            <li onClick={() => handleNavigation('/underwork')}>Schedules <AccessTimeIcon /></li>
-            <li onClick={() => handleNavigation('/underwork')}>Settings</li>
+                        <li onClick={() => handleNavigation('/underwork')}>Configuration <i className="fa-solid fa-database"></i></li>
+                        <li onClick={() => handleNavigation('/underwork')}>Pipeline <QueryStatsIcon /></li>
+                        <li onClick={() => handleNavigation('/underwork')}>Schedules <AccessTimeIcon /></li>
+                        <li onClick={() => handleNavigation('/underwork')}>Settings</li>
                     </ul>
                 </div>
                 <div className="content">
@@ -67,16 +60,20 @@ function Connection() {
                         <table>
                             <thead>
                                 <tr>
+                                    <th>Serial Number</th>
                                     <th>Username</th>
                                     <th>Email</th>
+                                    <th>Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.map((user) => (
+                                {users.map((user, index) => (
                                     <tr key={user._id}>
+                                        <td>{index + 1}</td> {/* Serial number */}
                                         <td>{user.username}</td>
                                         <td>{user.email}</td>
+                                        <td>{new Date().toLocaleDateString()}</td> {/* Current date */}
                                         <td>
                                             <button onClick={() => deleteUser(user._id)}>Delete</button>
                                             {/* <button onClick={() => handleEditUser(user._id)}>Edit</button> */}

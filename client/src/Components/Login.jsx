@@ -93,8 +93,8 @@ export default function Login() {
             <div className="col-md-7 bg-light">
               
               <div className="text-center p-5">
-              <img src="./image/welcome-logo.png" alt="logo" style={{width:"10rem"}}/>
-             
+              <img src="./image/welcome-logo.png" alt="logo" style={{width:"20%"}}/>
+              <h5 className="text-secondary fw-bolder fs-5 my-3">Sign up ot see Dashboard .</h5>
                 <form onSubmit={formik.handleSubmit}>
                   {error ? <p className="text-danger ">{error}</p> : ""}
                   <input

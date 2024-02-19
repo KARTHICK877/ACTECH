@@ -97,8 +97,8 @@ export default function Register() {
           </div>
           <div className="col-md-7 bg-light">
             <div className="text-center p-5">
-            <img src="./image/welcome-logo.png" alt="logo" style={{width:"10rem"}}/>
-              <h5 className="text-secondary fw-bolder fs-5 my-3">Sign up to see photos and videos from your friends.</h5>
+            <img src="./image/welcome-logo.png" alt="logo" style={{width:"20%"}}/>
+              <h5 className="text-secondary fw-bolder fs-5 my-3">Sign up t see Dashboard.</h5>
               <form onSubmit={formik.handleSubmit}>
                 {error ? <p className="text-danger ">{error}</p> : ""}
                 <input
