@@ -108,7 +108,7 @@ React.useEffect(() => {
       
     /> <BarChart
     width={500}
-    height={400}
+    height={350}
     series={[
       { data: pData, label: 'pv', id: 'pvId' },
       { data: uData, label: 'uv', id: 'uvId' },
