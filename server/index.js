@@ -179,6 +179,9 @@ app.put('/api/user/:id', async (req, res) => {
   }
 });
 
+app.get('/', (req, res) => {
+  res.send('dashboard working good');
+});
 
 
 
