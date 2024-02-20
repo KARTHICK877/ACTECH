@@ -6,10 +6,13 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import SettingsInputHdmiIcon from '@mui/icons-material/SettingsInputHdmi';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import { useNavigate } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
 import './Connection.css';
 
 function Connection() {
     const [users, setUsers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [newUser, setNewUser] = useState({ username: '', email: '' }); // New state for form filling
     const navigate = useNavigate();
 
     const handleNavigation = (path) => {
@@ -41,6 +44,37 @@ function Connection() {
         }
     };
 
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setNewUser({
+            ...newUser,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            await axios.post('http://localhost:9000/api/user', newUser);
+            console.log('User added successfully');
+            getUsers();
+            setNewUser({ username: '', email: '' }); // Reset form fields
+            toast.success('User added successfully');
+        } catch (error) {
+            console.error('Error adding user:', error);
+            toast.error('Error adding user');
+        }
+    };
+
+    const filteredUsers = users.filter((user) => {
+        return user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+               user.email.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
     return (
         <div className='bg-login'>
             <div className="dashboard">
@@ -50,47 +84,25 @@ function Connection() {
                         <li onClick={() => handleNavigation('/home')}>Home</li>
                         <li onClick={() => handleNavigation('/connection')}>Connection  <SettingsInputHdmiIcon /></li>
                         <li onClick={() => handleNavigation('/CreateConnection')}>Create Connection</li>
-                        <li onClick={() => handleNavigation('/Pipeline')}>Pipeline <QueryStatsIcon /></li>
+                        <li onClick={() => handleNavigation('/pipeline')}>Pipeline <QueryStatsIcon /></li>
                         <li onClick={() => handleNavigation('/Config')}>Configuration <i className="fa-solid fa-database"></i></li>
                         <li onClick={() => handleNavigation('/Schedules')}>Schedules <AccessTimeIcon /></li>
                         <li onClick={() => handleNavigation('/home')}>Settings</li>
                     </ul>
                 </div>
                 <div className="content">
-                    <h2 style={{ color: "white" }}>Connection</h2>
+                    <h2 style={{ color: "white" }}>Configuration</h2>
                     <div>
-                        <h3>User Data</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Serial Number</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
-                                    {/* <th>Active</th> New column for Active status */}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {users.map((user, index) => (
-                                    <tr key={user._id}>
-                                        <td>{index + 1}</td> {/* Serial number */}
-                                        <td>{user.username}</td>
-                                        <td>{user.email}</td>
-                                        <td>{new Date().toLocaleDateString()}</td> {/* Current date */}
-                                        <td>
-                                            <button onClick={() => deleteUser(user._id)} style={{backgroundColor:"red",color:"whitesmoke"}}>Delete</button>
-                                            {/* <button onClick={() => handleEditUser(user._id)}>Edit</button> */}
-                                        </td>
-                                        <td>
-                                            {/* <button onClick={() => toggleActive(user._id, user.isActive)}>
-                                                {user.isActive ? 'Active' : 'Inactive'}
-                                            </button> */}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                        
+                        
+                        <h3>User Summary</h3>
+                        <ul>
+                            {filteredUsers.map((user) => (
+                                <li key={user._id}>
+                                    Username: {user.username}, Email: {user.email}
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -75,10 +75,10 @@ React.useEffect(() => {
             <li onClick={() => handleNavigation('/home')}>Home</li>
             <li onClick={() => handleNavigation('/connection')}>Connection.. ({userDataCount}) <SettingsInputHdmiIcon /> </li> {/* Display user data count */}
             <li onClick={() => handleNavigation('/CreateConnection')}>Create Connection </li>
-            <li onClick={() => handleNavigation('/underwork')}>Configuration <i className="fa-solid fa-database"></i></li>
-            <li onClick={() => handleNavigation('/underwork')}>Pipeline <QueryStatsIcon /></li>
-            <li onClick={() => handleNavigation('/underwork')}>Schedules <AccessTimeIcon /></li>
-            <li onClick={() => handleNavigation('/underwork')}>Settings</li>
+            <li onClick={() => handleNavigation('/Pipeline')}>Pipeline <QueryStatsIcon /></li>
+            <li onClick={() => handleNavigation('/Config')}>Configuration <i className="fa-solid fa-database"></i></li>
+            <li onClick={() => handleNavigation('/Schedules')}>Schedules <AccessTimeIcon /></li>
+            <li onClick={() => handleNavigation('/home')}>Settings</li>
             <div onClick={()=>handleNavigation('/login')} className='logout'><LogoutIcon/>logout</div>
           </ul>
         </div>
@@ -108,7 +108,7 @@ React.useEffect(() => {
       
     /> <BarChart
     width={500}
-    height={300}
+    height={400}
     series={[
       { data: pData, label: 'pv', id: 'pvId' },
       { data: uData, label: 'uv', id: 'uvId' },

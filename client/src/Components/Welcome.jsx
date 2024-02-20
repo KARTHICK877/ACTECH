@@ -7,7 +7,7 @@ export default function Welcome() {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/home");
-    }, 7000); // 7 seconds delay
+    }, 6000); // 7 seconds delay
 
     return () => clearTimeout(timer);
   }, [navigate]);
@@ -15,7 +15,7 @@ export default function Welcome() {
   return (
     <div>
       <video
-        src="intro.mp4"
+        src="introo.mp4"
         style={{
           position: "absolute",
           top: 0,

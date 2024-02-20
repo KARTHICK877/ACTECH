@@ -24,7 +24,8 @@ const User = mongoose.model('User', userSchema);
 
 // Middleware for validating JWT token
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://resonant-platypus-523702.netlify.app'); // Update with your frontend origin
+  res.header('Access-Control-Allow-Origin', 'http://localhost:5173'); // Update with your frontend origin
+  // res.header('Access-Control-Allow-Origin', 'https://resonant-platypus-523702.netlify.app'); 
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
       res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
@@ -83,6 +84,24 @@ app.post('/api/user/login', async (req, res) => {
         res.status(500).send();
     }
 });
+app.get('/api/user/search', async (req, res) => {
+  const { term } = req.query;
+
+  try {
+      const users = await User.find({
+          $or: [
+              { username: { $regex: term, $options: 'i' } },
+              { email: { $regex: term, $options: 'i' } }
+          ]
+      });
+
+      res.status(200).json(users);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 app.get('/api/user', async (req, res) => {
   try {
     const users = await User.find();
@@ -136,6 +155,31 @@ app.delete('/api/user/:id', async (req, res) => {
     res.status(500).send();
   }
 });
+
+// Update endpoint for toggling user active status
+app.put('/api/user/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { isActive } = req.body;
+
+    // Find the user by ID
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    // Update the active status of the user
+    user.isActive = isActive;
+    await user.save();
+
+    res.status(200).json({ message: 'User active status updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
+
+
 
 
 const PORT = process.env.PORT || 9000;

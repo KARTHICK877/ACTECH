@@ -76,14 +76,14 @@ function CreateConnection() {
                         <li onClick={() => handleNavigation('/home')}>Home</li>
                         <li onClick={() => handleNavigation('/connection')}>Connection  <SettingsInputHdmiIcon /></li>
                         <li onClick={() => handleNavigation('/CreateConnection')}>Create Connection</li>
-                        <li onClick={() => handleNavigation('/underwork')}>Configuration <i class="fa-solid fa-database"></i></li>
-                        <li onClick={() => handleNavigation('/underwork')}>Pipeline <QueryStatsIcon /></li>
-                        <li onClick={() => handleNavigation('/underwork')}>Schedules <AccessTimeIcon /></li>
-                        <li onClick={() => handleNavigation('/underwork')}>Settings</li>
+                        <li onClick={() => handleNavigation('/Pipeline')}>Pipeline <QueryStatsIcon /></li>
+                        <li onClick={() => handleNavigation('/Config')}>Configuration <i class="fa-solid fa-database"></i></li>
+                        <li onClick={() => handleNavigation('/Schedules')}>Schedules <AccessTimeIcon /></li>
+                        <li onClick={() => handleNavigation('/home')}>Settings</li>
                     </ul>
                 </div>
                 <div>
-                    <h2 style={{ margin: "15px", color: "white" }}>Add User</h2>
+                    <h2 style={{ margin: "15px", color: "white" }}>Create Connection</h2>
                     <form className='form' onSubmit={handleSubmit}>
                         <input
                             type="text"

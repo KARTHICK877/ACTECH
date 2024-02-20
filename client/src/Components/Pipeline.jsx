@@ -6,10 +6,12 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import SettingsInputHdmiIcon from '@mui/icons-material/SettingsInputHdmi';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import { useNavigate } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
 import './Connection.css';
 
 function Connection() {
     const [users, setUsers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
     const handleNavigation = (path) => {
@@ -41,6 +43,15 @@ function Connection() {
         }
     };
 
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredUsers = users.filter((user) => {
+        return user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+               user.email.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
     return (
         <div className='bg-login'>
             <div className="dashboard">
@@ -50,16 +61,23 @@ function Connection() {
                         <li onClick={() => handleNavigation('/home')}>Home</li>
                         <li onClick={() => handleNavigation('/connection')}>Connection  <SettingsInputHdmiIcon /></li>
                         <li onClick={() => handleNavigation('/CreateConnection')}>Create Connection</li>
-                        <li onClick={() => handleNavigation('/Pipeline')}>Pipeline <QueryStatsIcon /></li>
+                        <li onClick={() => handleNavigation('/pipeline')}>Pipeline <QueryStatsIcon /></li>
                         <li onClick={() => handleNavigation('/Config')}>Configuration <i className="fa-solid fa-database"></i></li>
                         <li onClick={() => handleNavigation('/Schedules')}>Schedules <AccessTimeIcon /></li>
                         <li onClick={() => handleNavigation('/home')}>Settings</li>
                     </ul>
                 </div>
                 <div className="content">
-                    <h2 style={{ color: "white" }}>Connection</h2>
+                    <h2 style={{ color: "white" }}>Pipeline</h2>
                     <div>
                         <h3>User Data</h3>
+                        <input className='search-container'
+                            type="text"
+                            placeholder="Search by username or email"
+                            value={searchTerm}
+                            onChange={handleSearch}
+                          
+                        />  <SearchIcon className='icon'/>
                         <table>
                             <thead>
                                 <tr>
@@ -68,11 +86,11 @@ function Connection() {
                                     <th>Email</th>
                                     <th>Date</th>
                                     <th>Action</th>
-                                    {/* <th>Active</th> New column for Active status */}
+                                    <th>Active</th> {/* New column for Active status */}
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.map((user, index) => (
+                                {filteredUsers.map((user, index) => (
                                     <tr key={user._id}>
                                         <td>{index + 1}</td> {/* Serial number */}
                                         <td>{user.username}</td>
