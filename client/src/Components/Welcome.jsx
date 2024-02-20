@@ -15,7 +15,7 @@ export default function Welcome() {
   return (
     <div>
       <video
-        src="introo.mp4"
+        src="intron.mp4"
         style={{
           position: "absolute",
           top: 0,
